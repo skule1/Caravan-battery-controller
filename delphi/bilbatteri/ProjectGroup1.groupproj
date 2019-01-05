@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{97FC4083-2D58-46D2-9E78-6986D4B1E41D}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="bilbatteri.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\destroyer\destroyer.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="E:\Dokumenter\Embarcadero\Studio\Projects\bobil\bobiltest.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="bilbatteri">
+        <MSBuild Projects="bilbatteri.dproj"/>
+    </Target>
+    <Target Name="bilbatteri:Clean">
+        <MSBuild Projects="bilbatteri.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="bilbatteri:Make">
+        <MSBuild Projects="bilbatteri.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="destroyer">
+        <MSBuild Projects="..\destroyer\destroyer.dproj"/>
+    </Target>
+    <Target Name="destroyer:Clean">
+        <MSBuild Projects="..\destroyer\destroyer.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="destroyer:Make">
+        <MSBuild Projects="..\destroyer\destroyer.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="bobiltest">
+        <MSBuild Projects="E:\Dokumenter\Embarcadero\Studio\Projects\bobil\bobiltest.dproj"/>
+    </Target>
+    <Target Name="bobiltest:Clean">
+        <MSBuild Projects="E:\Dokumenter\Embarcadero\Studio\Projects\bobil\bobiltest.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="bobiltest:Make">
+        <MSBuild Projects="E:\Dokumenter\Embarcadero\Studio\Projects\bobil\bobiltest.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="bilbatteri;destroyer;bobiltest"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="bilbatteri:Clean;destroyer:Clean;bobiltest:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="bilbatteri:Make;destroyer:Make;bobiltest:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
