@@ -9,6 +9,9 @@
         <Projects Include="..\..\..\destroyer\delphi\destroyer.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="E:\Dokumenter\Embarcadero\Studio\Projects\Project9.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -35,14 +38,23 @@
     <Target Name="destroyer:Make">
         <MSBuild Projects="..\..\..\destroyer\delphi\destroyer.dproj" Targets="Make"/>
     </Target>
+    <Target Name="Project9">
+        <MSBuild Projects="E:\Dokumenter\Embarcadero\Studio\Projects\Project9.dproj"/>
+    </Target>
+    <Target Name="Project9:Clean">
+        <MSBuild Projects="E:\Dokumenter\Embarcadero\Studio\Projects\Project9.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Project9:Make">
+        <MSBuild Projects="E:\Dokumenter\Embarcadero\Studio\Projects\Project9.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="bilbatteri;destroyer"/>
+        <CallTarget Targets="bilbatteri;destroyer;Project9"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="bilbatteri:Clean;destroyer:Clean"/>
+        <CallTarget Targets="bilbatteri:Clean;destroyer:Clean;Project9:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="bilbatteri:Make;destroyer:Make"/>
+        <CallTarget Targets="bilbatteri:Make;destroyer:Make;Project9:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

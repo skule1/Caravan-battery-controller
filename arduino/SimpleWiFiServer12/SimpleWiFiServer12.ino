@@ -366,11 +366,11 @@ else
   Serial.println(analogRead(A15));
 }
 
-void loopii()
+void loop()
 {
 Send_til_klient();
 }
-void loop()
+void loopoo()
 {
   Serial.print("a15 loop raw: ");
   Serial.println(analogRead(A15));
@@ -780,29 +780,35 @@ void Send_til_klient() {
     Serial.println("New Client.");           // print a message out the serial port
     String currentLine = "";                // make a String to hold incoming data from the client
     while (client.connected()) {            // loop while the client's connected
-      while (client.available()) {             // if there's bytes to read from the client,
-        currentLine=client.readString();
-//        char c = client.read();             // read a byte, then
-  //      Serial.write(c);                    // print it out the serial monitor
-  //      if (c == '\n') 
-                            // if the byte is a newline character
+	//	Serial.println("connected");
+	if (client.available()>3) 
+		{             // if there's bytes to read from the client,
+			Serial.println("available");
+			currentLine = client.readString();          //readStringUntil('\r');//      readString();
+			//        char c = client.read();             // read a byte, then
+			  //      Serial.write(c);                    // print it out the serial monitor
+			  //      if (c == '\n') 
+										// if the byte is a newline character
 
 
-          Serial.println("kommando: " + currentLine);
-        Serial.println(currentLine.substring(0,5));
+			Serial.println("kommando: " + currentLine);
+		//	Serial.println(currentLine.substring(0, 5));
 
 
-          /*    client.print("Temp batt 2: \t");
-            Serial.print("Temp batt 2: \t");
-            client.print(Temp2);
-            Serial.print(Temp2);
-            client.println(" C");
-            Serial.println(" C");
-          */
-          if (currentLine == "fan on")
-            digitalWrite(vifte, HIGH);
-          else if (currentLine == "fan off")
-            digitalWrite(vifte, HIGH) ;
+			/*    client.print("Temp batt 2: \t");
+			  Serial.print("Temp batt 2: \t");
+			  client.print(Temp2);
+			  Serial.print(Temp2);
+			  client.println(" C");
+			  Serial.println(" C");
+			*/
+			if (currentLine == "fan on")
+				ledcWrite(channel, 200);
+			else if (currentLine == "fan off")
+			{
+				ledcWrite(channel, 0);
+					Serial.println("Fan satt off");
+		     }
         else if (currentLine == "fan set")
         {
           int i=currentLine.indexOf('\t');
@@ -926,7 +932,7 @@ void Send_til_klient() {
           }
           else
           { // if you got a newline, then clear currentLine:
-            Serial.println("rest currentline " + currentLine);
+            Serial.print("rest currentline: " + currentLine);
             currentLine = "";
           }
 
@@ -967,9 +973,9 @@ void Send_til_klient() {
       client.println(digitalRead(gass_alarm));
       client.print("Gass\t");
       client.println(gass);     
-      Serial.println("Data sendt til klient");
-      client.stop();
-      Serial.println("Client Disconnected.");
+  //    Serial.println("Data sendt til klient");
+  //    client.stop();
+   //   Serial.println("Client Disconnected.");
     }
     // close the connection:
 

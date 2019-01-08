@@ -27,7 +27,7 @@ object Form3: TForm3
     Top = 41
     Width = 929
     Height = 644
-    ActivePage = TabSheet4
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -1185,7 +1185,7 @@ object Form3: TForm3
           Orientation = voHorizontal
         end
         object VrDemoButton1: TVrDemoButton
-          Left = 121
+          Left = 125
           Top = 551
           Width = 150
           Height = 25

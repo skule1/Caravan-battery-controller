@@ -197,16 +197,13 @@ begin
 //          if (not idtcpclient1.connected) then
   //           idtcpclient1.connect();
 //IdTCPClient1.Connect ;
+wifi.Resume;
 button1.Caption:='Avbryt';
 button2.Enabled:=true;
 kontakt:=true;
     VrLed6.Color:=clGreen;
       VrLed5.Color:=clGreen;
-
-
-
   (*
-
  //    if (not kontakt) then     exit;
  if (not idtcpclient1.connected) then
  idtcpclient1.connect();
@@ -217,23 +214,11 @@ kontakt:=true;
 //    inc(kk)  ;
     memo1.Lines.Add(st1)             ;
      end;
-
-
-
-
-      *)
-
-
-
-
-
-
-
-
-
+   *)
 end
 else
 begin
+wifi.Suspend;
  //  IdTCPClient1.Disconnect;
   button1.Caption:='Connect';
 //  button2.Enabled:=false;
@@ -266,6 +251,7 @@ i_max:=50;
 u_min:=11;
 u_max:=15;
 wifi:=twifi.Create;
+wifi.Suspend;
 end;
 
 procedure TForm3.FormCreate(Sender: TObject);
@@ -285,11 +271,15 @@ end
 begin
           VrSlider1.Visible:=false;
          VrGauge1.Visible:=false;
+             IdTCPClient1.Socket.WriteLn('fan off');
 end
  else
 begin
           VrSlider1.Visible:=false;
           VrGauge1.Visible:=true;
+
+        //  Vifte av
+
 end;
 end;
 
@@ -512,17 +502,23 @@ var
 s: string;
 begin
 if not IdTCPClient1.Connected then Exit;
-if IdTCPClient1.IOHandler.InputBufferIsEmpty then Exit;
-s := IdTCPClient1.IOHandler.ReadLn();
-       UpdateProgress( s )
+//if IdTCPClient1.IOHandler.InputBufferIsEmpty then Exit;
+//s := IdTCPClient1.IOHandler.ReadLn();
+    IdTCPClient1.Socket.Writeln('fan off');
+  //     UpdateProgress( s )
 end;
 
 //end;
 
 procedure TForm3.VrDemoButton1Click(Sender: TObject);
+var l:boolean;
 begin
+l:=idtcpclient1.connected;
   if (not idtcpclient1.connected) then
     idtcpclient1.connect();
+              wifi.Resume;
+   IdTCPClient1.Socket.WriteLn('bat1 off');
+   exit;
    if (VrDemoButton1.Caption='Koble til') then
    begin
    IdTCPClient1.Socket.WriteLn('bat1 on');
@@ -568,7 +564,7 @@ procedure TForm3.VrDemoButton9Click(Sender: TObject);
 var st,st1:string;
 begin
 //Button1Click(Sender);
-
+          wifi.Resume;
 if (VrDemoButton9.Caption='Avbryt nett') then
 begin
 
