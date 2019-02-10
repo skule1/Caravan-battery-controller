@@ -15,29 +15,45 @@ object Form3: TForm3
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
-  object Label1: TLabel
-    Left = 248
-    Top = 88
-    Width = 31
-    Height = 13
-    Caption = 'Label1'
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 929
+    Height = 41
+    Align = alTop
+    Caption = 'Panel1'
+    TabOrder = 0
   end
   object PageControl1: TPageControl
     Left = 0
     Top = 41
     Width = 929
     Height = 644
-    ActivePage = TabSheet1
+    ActivePage = TabSheet3
     Align = alClient
-    TabOrder = 0
+    TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Oppsett'
       object Label4: TLabel
-        Left = 712
+        Left = 536
         Top = 422
         Width = 31
         Height = 13
         Caption = 'Label4'
+      end
+      object Label26: TLabel
+        Left = 32
+        Top = 256
+        Width = 37
+        Height = 13
+        Caption = 'Label26'
+      end
+      object Label27: TLabel
+        Left = 744
+        Top = 208
+        Width = 37
+        Height = 13
+        Caption = 'Label27'
       end
       object Edit2: TEdit
         Left = 512
@@ -58,8 +74,8 @@ object Form3: TForm3
         OnClick = Button2Click
       end
       object Button1: TButton
-        Left = 696
-        Top = 391
+        Left = 512
+        Top = 375
         Width = 121
         Height = 25
         Caption = 'Connect'
@@ -67,8 +83,8 @@ object Form3: TForm3
         OnClick = Button1Click
       end
       object Memo1: TMemo
-        Left = 336
-        Top = 80
+        Left = 144
+        Top = 22
         Width = 321
         Height = 505
         Lines.Strings = (
@@ -76,13 +92,89 @@ object Form3: TForm3
         TabOrder = 3
       end
       object Button3: TButton
-        Left = 200
-        Top = 144
+        Left = 24
+        Top = 168
         Width = 75
         Height = 25
         Caption = 'Button3'
         TabOrder = 4
         OnClick = Button3Click
+      end
+      object ListBox1: TListBox
+        Left = 512
+        Top = 104
+        Width = 121
+        Height = 241
+        ItemHeight = 13
+        TabOrder = 5
+      end
+      object Button4: TButton
+        Left = 512
+        Top = 441
+        Width = 121
+        Height = 25
+        Caption = 'Resume'
+        Enabled = False
+        TabOrder = 6
+        OnClick = Button4Click
+      end
+      object Button6: TButton
+        Left = 544
+        Top = 512
+        Width = 75
+        Height = 25
+        Caption = 'Button6'
+        TabOrder = 7
+        OnClick = Button6Click
+      end
+      object Button7: TButton
+        Left = 544
+        Top = 552
+        Width = 75
+        Height = 25
+        Caption = 'Button7'
+        TabOrder = 8
+        OnClick = Button7Click
+      end
+      object ScrollBar1: TScrollBar
+        Left = 744
+        Top = 72
+        Width = 17
+        Height = 121
+        Kind = sbVertical
+        Max = 1000
+        Min = 100
+        PageSize = 0
+        Position = 1000
+        TabOrder = 9
+        OnChange = ScrollBar1Change
+      end
+      object Button8: TButton
+        Left = 728
+        Top = 296
+        Width = 75
+        Height = 25
+        Caption = 'Button8'
+        TabOrder = 10
+        OnClick = Button8Click
+      end
+      object Button9: TButton
+        Left = 728
+        Top = 344
+        Width = 75
+        Height = 25
+        Caption = 'Button9'
+        TabOrder = 11
+        OnClick = Button9Click
+      end
+      object CheckBox1: TCheckBox
+        Left = 704
+        Top = 400
+        Width = 97
+        Height = 17
+        Caption = 'CheckBox1'
+        TabOrder = 12
+        OnClick = CheckBox1Click
       end
     end
     object TabSheet2: TTabSheet
@@ -91,45 +183,6 @@ object Form3: TForm3
       Highlighted = True
       ImageIndex = 1
       ParentDoubleBuffered = False
-      object VrAngularMeter3: TVrAngularMeter
-        Left = 383
-        Top = 63
-        Width = 168
-        Height = 134
-        Margins.Left = 10
-        Margins.Top = 15
-        Margins.Right = 10
-        MaxValue = 16.000000000000000000
-        MinValue = 10.000000000000000000
-        Position = 10.000000000000000000
-        Decimals = 0
-        Spacing = 30
-        ThousandSeparator = True
-        Ticks = 50
-        TicksMin = 0
-        TicksMax = 15
-        TicksEnlarge = 5
-        ColorZone1 = clRed
-        ColorZone2 = clGreen
-        ColorZone3 = clYellow
-        Percent1 = 35
-        Percent2 = 30
-        Labels = 12
-        LabelsOffset = 25
-        LabelsFont.Charset = DEFAULT_CHARSET
-        LabelsFont.Color = clBlack
-        LabelsFont.Height = -11
-        LabelsFont.Name = 'Tahoma'
-        LabelsFont.Style = []
-        Caption = 'U ='
-        CaptionYOffset = 30
-        Color = clWhite
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -19
-        Font.Name = 'Tahoma'
-        Font.Style = []
-      end
       object VrLabel1: TVrLabel
         Left = 64
         Top = 20
@@ -632,66 +685,8 @@ object Form3: TForm3
         Color = clBackground
         ParentBackground = False
         TabOrder = 0
-        object VrLabel5: TVrLabel
-          Left = 160
-          Top = 20
-          Width = 100
-          Height = 25
-          Color = clBtnFace
-          Caption = 'Batteri 1'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -19
-          Font.Name = 'Arial'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object VrLabel6: TVrLabel
-          Left = 317
-          Top = 20
-          Width = 100
-          Height = 25
-          Color = clBtnFace
-          Caption = 'Batteri 2'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -19
-          Font.Name = 'Arial'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object VrLabel7: TVrLabel
-          Left = 509
-          Top = 20
-          Width = 100
-          Height = 25
-          Color = clBtnFace
-          Caption = 'Driftskrets'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -19
-          Font.Name = 'Arial'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object VrLabel8: TVrLabel
-          Left = 701
-          Top = 20
-          Width = 100
-          Height = 25
-          Color = clBtnFace
-          Caption = 'Gass'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -19
-          Font.Name = 'Arial'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
+        ExplicitLeft = -3
+        ExplicitTop = 3
         object VrAngularMeter9: TVrAngularMeter
           Left = 667
           Top = 63
@@ -803,7 +798,7 @@ object Form3: TForm3
           Font.Style = []
         end
         object VrAngularMeter13: TVrAngularMeter
-          Left = 121
+          Left = 111
           Top = 63
           Width = 168
           Height = 134
@@ -879,7 +874,7 @@ object Form3: TForm3
           Font.Style = []
         end
         object VrAngularMeter15: TVrAngularMeter
-          Left = 291
+          Left = 299
           Top = 215
           Width = 168
           Height = 129
@@ -1005,7 +1000,7 @@ object Form3: TForm3
           Font.Style = [fsBold]
         end
         object VrAngularMeter18: TVrAngularMeter
-          Left = 121
+          Left = 111
           Top = 353
           Width = 168
           Height = 129
@@ -1039,7 +1034,7 @@ object Form3: TForm3
           Font.Style = [fsBold]
         end
         object VrLed5: TVrLed
-          Left = 160
+          Left = 168
           Top = 488
           Width = 73
           Height = 57
@@ -1055,7 +1050,7 @@ object Form3: TForm3
           ParentFont = False
         end
         object VrLed6: TVrLed
-          Left = 344
+          Left = 336
           Top = 491
           Width = 73
           Height = 57
@@ -1072,46 +1067,18 @@ object Form3: TForm3
         end
         object VrLabel9: TVrLabel
           Left = 16
-          Top = 132
+          Top = 258
           Width = 100
           Height = 25
-          Color = clBtnFace
-          Caption = 'Spenning'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -19
-          Font.Name = 'Arial'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object VrLabel10: TVrLabel
-          Left = 16
-          Top = 260
-          Width = 100
-          Height = 25
-          Color = clBtnFace
+          ColorHighlight = clBlack
+          ColorShadow = clBlack
+          Color = clBlack
           Caption = 'Str'#248'm'
           Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
+          Font.Color = clYellow
           Font.Height = -19
           Font.Name = 'Arial'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object VrLabel11: TVrLabel
-          Left = 16
-          Top = 396
-          Width = 100
-          Height = 25
-          Color = clBtnFace
-          Caption = 'Temp'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -19
-          Font.Name = 'Arial'
-          Font.Style = []
+          Font.Style = [fsBold]
           ParentColor = False
           ParentFont = False
         end
@@ -1149,21 +1116,6 @@ object Form3: TForm3
           Font.Name = 'Tahoma'
           Font.Style = [fsBold]
         end
-        object VrLabel12: TVrLabel
-          Left = 703
-          Top = 231
-          Width = 100
-          Height = 25
-          Color = clBtnFace
-          Caption = 'Vifte'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -19
-          Font.Name = 'Arial'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
         object VrGauge1: TVrGauge
           Left = 703
           Top = 274
@@ -1184,11 +1136,130 @@ object Form3: TForm3
           Bevel.OuterOutline = osOuter
           Orientation = voHorizontal
         end
+        object VrLabel10: TVrLabel
+          Left = 16
+          Top = 122
+          Width = 100
+          Height = 25
+          ColorHighlight = clBlack
+          ColorShadow = clBlack
+          Color = clBlack
+          Caption = 'Spenning'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clYellow
+          Font.Height = -19
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object VrLabel13: TVrLabel
+          Left = 20
+          Top = 398
+          Width = 100
+          Height = 25
+          ColorHighlight = clBlack
+          ColorShadow = clBlack
+          Color = clBlack
+          Caption = 'Temp'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clYellow
+          Font.Height = -19
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object VrLabel6: TVrLabel
+          Left = 152
+          Top = 20
+          Width = 100
+          Height = 25
+          ColorHighlight = clBlack
+          ColorShadow = clBlack
+          Color = clBlack
+          Caption = 'Batteri 1'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clYellow
+          Font.Height = -19
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object VrLabel11: TVrLabel
+          Left = 321
+          Top = 20
+          Width = 100
+          Height = 25
+          ColorHighlight = clBlack
+          ColorShadow = clBlack
+          Color = clBlack
+          Caption = 'Batteri 2'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clYellow
+          Font.Height = -19
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object VrLabel14: TVrLabel
+          Left = 520
+          Top = 20
+          Width = 100
+          Height = 25
+          ColorHighlight = clBlack
+          ColorShadow = clBlack
+          Color = clBlack
+          Caption = 'Driftskrets'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clYellow
+          Font.Height = -19
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object VrLabel8: TVrLabel
+          Left = 703
+          Top = 20
+          Width = 100
+          Height = 25
+          ColorHighlight = clBlack
+          ColorShadow = clBlack
+          Color = clBlack
+          Caption = 'Gass'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clYellow
+          Font.Height = -19
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object VrLabel5: TVrLabel
+          Left = 695
+          Top = 236
+          Width = 100
+          Height = 25
+          ColorHighlight = clBlack
+          ColorShadow = clBlack
+          Color = clBlack
+          Caption = 'Vifte'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clYellow
+          Font.Height = -19
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
         object VrDemoButton1: TVrDemoButton
-          Left = 125
+          Left = 121
           Top = 551
           Width = 150
-          Height = 25
+          Height = 42
           FontEnter.Charset = DEFAULT_CHARSET
           FontEnter.Color = clRed
           FontEnter.Height = -16
@@ -1204,10 +1275,10 @@ object Form3: TForm3
           OnClick = VrDemoButton1Click
         end
         object VrDemoButton6: TVrDemoButton
-          Left = 309
+          Left = 299
           Top = 554
           Width = 150
-          Height = 25
+          Height = 42
           FontEnter.Charset = DEFAULT_CHARSET
           FontEnter.Color = clRed
           FontEnter.Height = -16
@@ -1223,8 +1294,8 @@ object Form3: TForm3
           OnClick = VrDemoButton6Click
         end
         object VrDemoButton7: TVrDemoButton
-          Left = 703
-          Top = 456
+          Left = 701
+          Top = 448
           Width = 178
           Height = 57
           FontEnter.Charset = DEFAULT_CHARSET
@@ -1243,8 +1314,8 @@ object Form3: TForm3
           OnClick = VrDemoButton7Click
         end
         object VrDemoButton8: TVrDemoButton
-          Left = 703
-          Top = 528
+          Left = 701
+          Top = 527
           Width = 178
           Height = 57
           FontEnter.Charset = DEFAULT_CHARSET
@@ -1257,14 +1328,14 @@ object Form3: TForm3
           FontLeave.Height = -16
           FontLeave.Name = 'Arial'
           FontLeave.Style = [fsBold]
-          Caption = 'Frakoble'
+          Caption = 'Frakoble batt'
           Enabled = False
           TabOrder = 3
           OnClick = VrDemoButton8Click
         end
         object VrDemoButton9: TVrDemoButton
-          Left = 703
-          Top = 384
+          Left = 701
+          Top = 366
           Width = 178
           Height = 57
           FontEnter.Charset = DEFAULT_CHARSET
@@ -1299,12 +1370,13 @@ object Form3: TForm3
           Bevel.OuterOutline = osOuter
           Palette.Low = clGreen
           Palette.High = clLime
+          OnChanged = VrSlider1Changed
           TabOrder = 5
           Visible = False
         end
         object frxComboBox1: TfrxComboBox
-          Left = 703
-          Top = 312
+          Left = 701
+          Top = 302
           Width = 100
           Height = 19
           Items.Strings = (
@@ -1404,9 +1476,8 @@ object Form3: TForm3
       object Label13: TLabel
         Left = 384
         Top = 67
-        Width = 37
+        Width = 3
         Height = 13
-        Caption = 'Label13'
       end
       object Label14: TLabel
         Left = 148
@@ -1419,65 +1490,98 @@ object Form3: TForm3
       object Label16: TLabel
         Left = 384
         Top = 94
-        Width = 37
+        Width = 3
         Height = 13
-        Caption = 'Label13'
       end
       object Label17: TLabel
         Left = 384
         Top = 121
-        Width = 37
+        Width = 3
         Height = 13
-        Caption = 'Label13'
       end
       object Label18: TLabel
         Left = 384
         Top = 148
-        Width = 37
+        Width = 3
         Height = 13
-        Caption = 'Label13'
       end
       object Label19: TLabel
         Left = 384
         Top = 175
-        Width = 37
+        Width = 3
         Height = 13
-        Caption = 'Label13'
       end
       object Label20: TLabel
         Left = 384
         Top = 201
-        Width = 37
+        Width = 3
         Height = 13
-        Caption = 'Label13'
       end
       object Label21: TLabel
         Left = 384
         Top = 229
-        Width = 37
+        Width = 3
         Height = 13
-        Caption = 'Label13'
       end
       object Label22: TLabel
         Left = 384
         Top = 256
-        Width = 37
+        Width = 3
         Height = 13
-        Caption = 'Label13'
       end
       object Label23: TLabel
         Left = 384
         Top = 283
-        Width = 37
+        Width = 3
         Height = 13
-        Caption = 'Label13'
       end
       object Label24: TLabel
         Left = 384
         Top = 310
+        Width = 3
+        Height = 13
+      end
+      object Label29: TLabel
+        Left = 384
+        Top = 338
+        Width = 3
+        Height = 13
+      end
+      object Label30: TLabel
+        Left = 384
+        Top = 364
+        Width = 3
+        Height = 13
+      end
+      object Label31: TLabel
+        Left = 175
+        Top = 338
+        Width = 45
+        Height = 13
+        Alignment = taRightJustify
+        Caption = 'Batteri 1:'
+      end
+      object Label32: TLabel
+        Left = 175
+        Top = 364
+        Width = 45
+        Height = 13
+        Alignment = taRightJustify
+        Caption = 'Batteri 2:'
+      end
+      object Label1: TLabel
+        Left = 384
+        Top = 335
         Width = 37
         Height = 13
-        Caption = 'Label13'
+        Caption = 'Label29'
+      end
+      object Label15: TLabel
+        Left = 384
+        Top = 364
+        Width = 37
+        Height = 13
+        Caption = 'Label30'
       end
       object Edit1: TEdit
         Left = 226
@@ -1549,6 +1653,7 @@ object Form3: TForm3
         Height = 21
         TabOrder = 7
         Text = '- Oppgi riktig verdi'
+        OnChange = Edit9Change
       end
       object Edit10: TEdit
         Left = 226
@@ -1567,36 +1672,49 @@ object Form3: TForm3
         Text = '- Oppgi riktig verdi'
         OnExit = Edit11Exit
       end
+      object Edit12: TEdit
+        Left = 226
+        Top = 334
+        Width = 121
+        Height = 21
+        TabOrder = 10
+        Text = '- Oppgi riktig verdi'
+        OnExit = Edit12Exit
+      end
+      object Edit13: TEdit
+        Left = 226
+        Top = 361
+        Width = 121
+        Height = 21
+        TabOrder = 11
+        Text = '- Oppgi riktig verdi'
+        OnExit = Edit13Exit
+      end
     end
   end
-  object Panel1: TPanel
-    Left = 0
-    Top = 0
-    Width = 929
-    Height = 41
-    Align = alTop
-    Caption = 'Panel1'
-    TabOrder = 1
-  end
   object IdTCPClient1: TIdTCPClient
-    OnStatus = IdTCPClient1Status
+    OnDisconnected = IdTCPClient1Disconnected
+    OnConnected = IdTCPClient1Connected
     ConnectTimeout = 0
     Host = '192.168.10.95'
     IPVersion = Id_IPv4
     Port = 50
     ReadTimeout = 1000
+    OnAfterBind = IdTCPClient1AfterBind
     Left = 860
     Top = 265
   end
+  object Timer2: TTimer
+    Enabled = False
+    Interval = 500
+    OnTimer = Timer2Timer
+    Left = 848
+    Top = 120
+  end
   object Timer1: TTimer
     Enabled = False
-    Left = 852
-    Top = 177
-  end
-  object Timer2: TTimer
-    Interval = 100
-    OnTimer = Timer2Timer
+    OnTimer = Timer1Timer
     Left = 864
-    Top = 112
+    Top = 360
   end
 end

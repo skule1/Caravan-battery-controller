@@ -1,15 +1,15 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <ProjectGuid>{14627F41-0DF9-4257-8246-8FB66B162C04}</ProjectGuid>
+        <ProjectGuid>{5817511D-51AE-4C37-A46A-DDC1934A0BCB}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
         <Projects Include="bilbatteri.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="..\..\..\destroyer\delphi\destroyer.dproj">
+        <Projects Include="..\..\..\destroyer\delphi\destroyer1.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="E:\Dokumenter\Embarcadero\Studio\Projects\Project9.dproj">
+        <Projects Include="E:\Dokumenter\Embarcadero\Studio\Projects\threadtest\Project10.dproj">
             <Dependencies/>
         </Projects>
     </ItemGroup>
@@ -29,32 +29,32 @@
     <Target Name="bilbatteri:Make">
         <MSBuild Projects="bilbatteri.dproj" Targets="Make"/>
     </Target>
-    <Target Name="destroyer">
-        <MSBuild Projects="..\..\..\destroyer\delphi\destroyer.dproj"/>
+    <Target Name="destroyer1">
+        <MSBuild Projects="..\..\..\destroyer\delphi\destroyer1.dproj"/>
     </Target>
-    <Target Name="destroyer:Clean">
-        <MSBuild Projects="..\..\..\destroyer\delphi\destroyer.dproj" Targets="Clean"/>
+    <Target Name="destroyer1:Clean">
+        <MSBuild Projects="..\..\..\destroyer\delphi\destroyer1.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="destroyer:Make">
-        <MSBuild Projects="..\..\..\destroyer\delphi\destroyer.dproj" Targets="Make"/>
+    <Target Name="destroyer1:Make">
+        <MSBuild Projects="..\..\..\destroyer\delphi\destroyer1.dproj" Targets="Make"/>
     </Target>
-    <Target Name="Project9">
-        <MSBuild Projects="E:\Dokumenter\Embarcadero\Studio\Projects\Project9.dproj"/>
+    <Target Name="Project10">
+        <MSBuild Projects="E:\Dokumenter\Embarcadero\Studio\Projects\threadtest\Project10.dproj"/>
     </Target>
-    <Target Name="Project9:Clean">
-        <MSBuild Projects="E:\Dokumenter\Embarcadero\Studio\Projects\Project9.dproj" Targets="Clean"/>
+    <Target Name="Project10:Clean">
+        <MSBuild Projects="E:\Dokumenter\Embarcadero\Studio\Projects\threadtest\Project10.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="Project9:Make">
-        <MSBuild Projects="E:\Dokumenter\Embarcadero\Studio\Projects\Project9.dproj" Targets="Make"/>
+    <Target Name="Project10:Make">
+        <MSBuild Projects="E:\Dokumenter\Embarcadero\Studio\Projects\threadtest\Project10.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="bilbatteri;destroyer;Project9"/>
+        <CallTarget Targets="bilbatteri;destroyer1;Project10"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="bilbatteri:Clean;destroyer:Clean;Project9:Clean"/>
+        <CallTarget Targets="bilbatteri:Clean;destroyer1:Clean;Project10:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="bilbatteri:Make;destroyer:Make;Project9:Make"/>
+        <CallTarget Targets="bilbatteri:Make;destroyer1:Make;Project10:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

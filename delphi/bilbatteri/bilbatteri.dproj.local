@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899.12.30 00.00.00.000.710,N:\prosjekter\bilbatteri\delphi\bilbatteri\Unit1.dfm=N:\prosjekter\bilbatteri\delphi\bilbatteri\wifitest.dfm</Transaction>
-    <Transaction>1899.12.30 00.00.00.000.515,=N:\prosjekter\bilbatteri\delphi\bilbatteri\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00.00.00.000.444,C:\Users\Skule\Documents\Embarcadero\Studio\Projects\Project3.dproj=N:\Embarcadero\Projects\bilbatteri\bilbatteri.dproj</Transaction>
+    <Transaction>1899.12.30 00.00.00.000.710,N:\prosjekter\bilbatteri\delphi\bilbatteri\wifitest.dfm=N:\prosjekter\bilbatteri\delphi\bilbatteri\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00.00.00.000.710,N:\prosjekter\bilbatteri\delphi\bilbatteri\wifitest.pas=N:\prosjekter\bilbatteri\delphi\bilbatteri\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00.00.00.000.490,N:\prosjekter\bilbatteri\delphi\bilbatteri\wifitest.pas=</Transaction>
-    <Transaction>1899.12.30 00.00.00.000.831,N:\Embarcadero\Projects\bilbatteri\Unit3.dfm=C:\Users\Skule\Documents\Embarcadero\Studio\Projects\Unit3.dfm</Transaction>
+    <Transaction>1899.12.30 00.00.00.000.831,C:\Users\Skule\Documents\Embarcadero\Studio\Projects\Unit3.dfm=N:\Embarcadero\Projects\bilbatteri\Unit3.dfm</Transaction>
+    <Transaction>1899.12.30 00.00.00.000.515,=N:\prosjekter\bilbatteri\delphi\bilbatteri\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00.00.00.000.831,C:\Users\Skule\Documents\Embarcadero\Studio\Projects\Unit3.pas=N:\Embarcadero\Projects\bilbatteri\Unit3.pas</Transaction>
     <Transaction>1899.12.30 00.00.00.000.507,=C:\Users\Skule\Documents\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
-    <Transaction>1899.12.30 00.00.00.000.444,N:\Embarcadero\Projects\bilbatteri\bilbatteri.dproj=C:\Users\Skule\Documents\Embarcadero\Studio\Projects\Project3.dproj</Transaction>
-    <Transaction>1899.12.30 00.00.00.000.710,N:\prosjekter\bilbatteri\delphi\bilbatteri\Unit1.pas=N:\prosjekter\bilbatteri\delphi\bilbatteri\wifitest.pas</Transaction>
-    <Transaction>1899.12.30 00.00.00.000.831,N:\Embarcadero\Projects\bilbatteri\Unit3.pas=C:\Users\Skule\Documents\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
   </Transactions>
 </BorlandProject>

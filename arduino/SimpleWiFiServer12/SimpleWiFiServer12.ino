@@ -46,12 +46,14 @@ int freq = 10000;
 int channel = 0;
 int resolution = 8;
 
+#define alarmsetting false
+#define visparametre false
 
 #define batteri1  6
 #define batteri2  7
 #define  Led1 5
 #define  Led2 18
-#define  Rele1 22
+#define  Rele1 4
 #define  Rele2 25
 //#define  Push1 4
 #define  Push2 0
@@ -63,8 +65,8 @@ int resolution = 8;
 #define T2 A3
 #define I1 A6
 #define I2 A7
-#define vifte 22
-#define gas A17   // virker ikke
+#define vifte 22 //22
+#define gas A17   // virker ikke bruker egen micro pro istedet..
 #define kab_temp A16 // A19 virker ikke
 #define lade_spenning A13 //virker ikke
 
@@ -76,6 +78,8 @@ int resolution = 8;
 #define E_I2 6
 #define E_LU 7
 #define E_KT 8
+#define E_UB1 9
+#define E_UB2 10
 
 //#define E_vifte 7
 //#define E_gass 8   // virker ikke
@@ -92,14 +96,14 @@ float grense_temp_kab = 40;
 HardwareSerial Serial2(2);
 
 int ThermistorPin = A0;
-int Vo;
+int Vo,i=0;
 int fan_set = 200;
-float R1 = 10000;
-float logR2, R2, T, Tc, Tf;
+float varR1 = 10000;
+float logR2, R1,R2, T, Tc, Tf;
 float c1 = 1.009249522e-03, c2 = 2.378405444e-04, c3 = 2.019202697e-07;
 float Temp1 = 20, Temp2 = 20, Up1 = 13, Up2 = 13, Strom1 = 10, Strom2 = 10, gass = 7 ;
 float KabTemp = 0, LadeSpenning = 0;
-float Max_temp = 60, Max_strom = 50, Min_spenning = 11, grense_gass = 10, offs1, offs2;
+float Max_temp = 60, Max_strom = 50, Min_spenning = 10, grense_gass = 10, offs1, offs2,UB1,UB2;
 boolean bat1 = true, bat2 = true, alarm1 = false, alarm2 = false, alarm1_ok = false, alarm2_ok = false;; // bat1 og bat2 viser klientens forespørlel til server
 
 float rest, prevrest;
@@ -114,10 +118,12 @@ IPAddress subnet(255, 255, 255, 0);
 IPAddress primaryDNS(192, 168, 10, 113); //optional
 IPAddress secondaryDNS(8, 8, 4, 4); //optional
 
+
 int value = 0;
 int j;
 
-void setupll()
+
+void setup3()
 {
   Serial.begin(115200);
   String st = "1234567890";
@@ -366,14 +372,70 @@ else
   Serial.println(analogRead(A15));
 }
 
+void loop88()
+{
+	/*
+	digitalWrite(Rele1, LOW);
+	//     digitalWrite(Rele2, LOW);
+	delay(1000);
+	digitalWrite(Rele1, HIGH);
+	//digitalWrite(Rele2, HIGH);
+	*/
+	//  alarm();
+	digitalWrite(Rele1, HIGH);
+	delay(1000);
+	//  digitalWrite(Rele1, LOW);
+	// delay(1000);
+
+}
+
+void loop4()
+{
+	digitalWrite(Rele1, LOW);
+	digitalWrite(Rele2, LOW);
+	digitalWrite(Led1, LOW);
+	digitalWrite(Led2, LOW);
+  Serial.println("LOW");
+	delay(2000);
+	digitalWrite(Rele1, HIGH);
+	digitalWrite(Rele2, HIGH);
+	digitalWrite(Led1, HIGH);
+	digitalWrite(Led2, HIGH);
+  Serial.println("HIGH");
+	delay(2000);
+}
+
+void loop2()
+{
+	WiFiClient client = server.available();   // listen for incoming clients
+	if (client)
+	{
+		Serial.println("New Client.");           // print a message out the serial port
+		String currentLine = "";                // make a String to hold incoming data from the client
+		while (client.connected()) {            // loop while the client's connected
+												//	Serial.println("connected");
+			if (client.available() > 3)
+			{             // if there's bytes to read from the client,
+				currentLine = client.readStringUntil('\r');//      readString();
+
+				if (currentLine[0] == 10)
+					currentLine = currentLine.substring(1);
+
+				Serial.println("kommando: " + currentLine);
+			}
+	  	if (currentLine=="stop")
+         	client.stop();
+		}
+		Serial.println("Disconnected");
+
+	}
+	//Serial.println("no client");
+
+}
+
+
 void loop()
 {
-Send_til_klient();
-}
-void loopoo()
-{
-  Serial.print("a15 loop raw: ");
-  Serial.println(analogRead(A15));
   ArduinoOTA.handle();
   //Serial.println("loop");
   Les_temperatur1();
@@ -382,22 +444,25 @@ void loopoo()
   Les_strom2();
   Les_spenning1();
   Les_spenning2();
-  Les_minipro();
+  
+//  Les_minipro();
  //  Les_ladespenning();  // leses av minipro()
 //  Les_kabinetttemp();
 //  Les_gass();
-Serial.println("kabtemp 2: "+String(KabTemp));
-  sjekk_verdier(false);
-  Send_til_klient();
-  Vis_parametre();
+//  sjekk_verdier(false);
+ Send_til_klient();
+//Vis_parametre();
   //	les_touch();
-  //	alarm();
-  if ((alarm1) || (alarm2)) blinkLCD();
-  if (alarm1) digitalWrite(Rele1, HIGH);
-  if (alarm2) digitalWrite(Rele2, HIGH);
-   delay(1000);
+	alarm();
+//if ((alarm1) || (alarm2)) blinkLCD();
+  //if (alarm1) digitalWrite(Rele1, HIGH);
+//  if (alarm2) digitalWrite(Rele2, HIGH);
+
+   delay(200);
 
 }
+
+
 void loop_tom() {}
 void loop33()
 {
@@ -441,7 +506,7 @@ boolean sjekk_verdier(boolean mode)
     if (Up2 < Min_spenning) alarm2 = true;
     //	if (gass > grense_gass) alarm1 = true;
 
-  */	return alarm1 || alarm2;
+  */	return alarm1 && alarm2;  // begge må være positive for at alarm ikke skal gis
 
 }
 void Les_temperatur1() {
@@ -449,7 +514,7 @@ void Les_temperatur1() {
   //  Vo = 550;
   //	Serial.print("Vo:");
   //	Serial.println(Vo);
-  R2 = R1 * (1023.0 / (float)Vo - 1.0);
+  R2 = varR1 * (1023.0 / (float)Vo - 1.0);
   logR2 = log(R2);
   T = (1.0 / (c1 + c2 * logR2 + c3 * logR2 * logR2 * logR2));
   Temp1 = T - 273.15;
@@ -458,11 +523,11 @@ void Les_temperatur1() {
 }
 void Les_temperatur2() {
   int Vo = analogRead(T2) / 2.8;
-  Serial.print("Vo temp2:");
-  Serial.println(Vo);
+ // Serial.print("Vo temp2:");
+ // Serial.println(Vo);
   //Serial.print("Vo:");
   //Serial.println(Vo);
-  R2 = R1 * (1023.0 / (float)Vo - 1.0);
+  R2 = varR1 * (1023.0 / (float)Vo - 1.0);
   logR2 = log(R2);
   T = (1.0 / (c1 + c2 * logR2 + c3 * logR2 * logR2 * logR2));
   Temp2 = T - 273.15;
@@ -477,7 +542,7 @@ void Les_kabinetttemp()
   Serial.println(Vo);
   //Serial.print("Vo:");
   //Serial.println(Vo);
-  R2 = R1 * (1023.0 / (float)Vo - 1.0);
+  R2 = varR1 * (1023.0 / (float)Vo - 1.0);
   logR2 = log(R2);
   T = (1.0 / (c1 + c2 * logR2 + c3 * logR2 * logR2 * logR2));
   KabTemp = (T - 273.15)*2;
@@ -492,7 +557,7 @@ void Les_kabinetttemp1()
   int Vo = analogRead(kab_temp) / 2.8;
   Serial.print("Vo:");
   Serial.println(Vo);
-  R2 = R1 * (1023.0 / (float)Vo - 1.0);
+  R2 = varR1 * (1023.0 / (float)Vo - 1.0);
   logR2 = log(R2);
   T = (1.0 / (c1 + c2 * logR2 + c3 * logR2 * logR2 * logR2));
   KabTemp = T - 273.15;
@@ -511,21 +576,36 @@ void Les_strom1() {
 void Les_strom2() {
   Strom2 = (analogRead(I2) - offs2) / 10;
 }
-
 void Les_spenning1() {
   int Vo = analogRead(U1);
   Up1 = Vo * 12 / 550;
-  Serial.print("Up1: "+String(Up1)+" : "+String(EEPROM.read(E_U1))+" : ");
-  if (EEPROM.read(E_U1)>0)
- //  Up1 =Up1*EEPROM.read(E_U1)/128;
-Serial.println(String(Up1));
+ // Serial.print("Up1: "+String(Up1)+" : "+String(EEPROM.read(E_U1))+" : ");
+//  if (EEPROM.read(E_U1)>0)
+ // Up1 =Up1*EEPROM.read(E_U1)/128;
+	// Serial.println(String(Up1));
 
 }
 void Les_spenning2() {
   int Vo = analogRead(U2);
   Up2 = Vo * 12 / 550;
   Up2 = Up2*12/7;
-Serial.println("Up2: "+String(Up2));
+//Serial.println("Up2: "+String(Up2));
+}
+void Les_spenningUB1() {
+//	int Vo = analogRead(UB1);  // leser fra mini pro
+	UB1 = Vo * 12 / 550;
+	Serial.print("UB1: " + String(UB1) + " : " + String(EEPROM.read(E_UB1)) + " : ");
+	if (EEPROM.read(E_UB1)>0)
+		//  Up1 =Up1*EEPROM.read(E_U1)/128;
+		Serial.println(String(UB1));
+
+}
+void Les_spenningUB2() {
+	//int Vo = analogRead(UB2);  // leser fa mini pro
+	Serial.print("UB2: " + String(UB2) + " : " + String(EEPROM.read(E_UB2)) + " : ");
+	UB2 = Vo * 12 / 550;
+	UB2 = UB2 * 12 / 7;
+	Serial.println("UB2: " + String(UB2));
 }
 void Les_gass()
 //https://www.elecrow.com/wiki/index.php?title=Analog_CO/Combustible_Gas_Sensor(MQ9)
@@ -564,8 +644,9 @@ void Les_gass()
 
 }
 void Vis_parametre() {
-	/*
-  Serial.print("T1 \t");
+#ifdef visparametre
+	
+ Serial.print("T1 \t");
   Serial.println(Temp1);
   Serial.print("T2 \t");
   Serial.println(Temp2);
@@ -607,7 +688,7 @@ void Vis_parametre() {
   Serial.println(digitalRead(gass_alarm));
     Serial.print("fan_set \t");
     Serial.println(fan_set);
-	*/
+
 	Serial.println("T1 \t" + String(Temp1) + '\t' + EEPROM.read(E_T1));
 	Serial.println("T2 \t" + String(Temp2) + '\t' + EEPROM.read(E_T2));
 	Serial.println("U1 \t" + String(Up1) + '\t' + EEPROM.read(E_U1));
@@ -637,81 +718,88 @@ void Vis_parametre() {
 	Serial.println(digitalRead(gass_alarm));
 	Serial.print("Gass\t");
 	Serial.println(gass);
-
+#endif
 }
 boolean alarm() {
   //  float Max_temp = 60, Max_strom = 50, Min_spenning = 11, grense_gass = 10;
-  exit;
+ // exit;
 
+	Serial.println("variabel \t" + String(Min_spenning) + '\t' + String(Max_temp) + '\t' + String(Max_strom));
+	Serial.println("variabel \t" + String(Up1*EEPROM.read(E_U1) / 128) + '\t' + String(Temp1*EEPROM.read(E_T1) / 128) + '\t' + String(Strom1*EEPROM.read(E_I1) / 128));
+	if (!alarm1) 	alarm1 = (Up1*EEPROM.read(E_U1) / 128 < Min_spenning) || (Temp1*EEPROM.read(E_T1) / 128 > Max_temp) || (Strom1*EEPROM.read(E_I1) / 128 > Max_strom);
+	if (!alarm2) alarm2 = (Up2*EEPROM.read(E_U2) / 128 < Min_spenning) || (Temp1*EEPROM.read(E_T2) / 128 > Max_temp) || (Strom1*EEPROM.read(E_I2) / 128 > Max_strom);
+#ifdef alarmsetting
   Serial.print("Alarm  1\t");
-  Serial.print(Up1 < Min_spenning);
+  Serial.print(Up1*EEPROM.read(E_U1)/ 128 < Min_spenning);
   Serial.print("  \t ");
-  Serial.print(Temp1 > Max_temp);
+  Serial.print(Temp1*EEPROM.read(E_T1) / 128  > Max_temp);
   Serial.print("  \t ");
-  Serial.print(Strom1 > Max_strom);
+  Serial.print(Strom1*EEPROM.read(E_I1) / 128  > Max_strom);
   Serial.print("  \t ");
-  Serial.print(alarm1);
-  Serial.print("  \t ");
-  Serial.println((Up1 < Min_spenning) || (Temp1 > Max_temp) || ( Strom1 > Max_strom) || alarm1) ;
+  Serial.println(alarm1);
+ 
 
-  Serial.print("Alarm  2\t");
-  Serial.print(Up2 < Min_spenning);
+  Serial.print("!alarm  2\t");
+  Serial.print(Up2*EEPROM.read(E_U2)/ 128 < Min_spenning);
   Serial.print("  \t ");
-  Serial.print(Temp2 > Max_temp);
+  Serial.print(Temp2*EEPROM.read(E_T2) / 128 > Max_temp);
   Serial.print("  \t ");
-  Serial.print(Strom2 > Max_strom);
+  Serial.print(Strom2*EEPROM.read(E_I2) / 128  > Max_strom);
   Serial.print("  \t ");
-  Serial.print(alarm2);
-  Serial.print("  \t ");
+  Serial.println(alarm2);
+#endif 
 
-         
-  Serial.println((Up2 < Min_spenning) || (Temp2 > Max_temp) || (Strom2 > Max_strom) || alarm2);
-
-  if ((Up1 < Min_spenning) || (Temp1 > Max_temp) || ( Strom1 > Max_strom) || alarm1 )
+	if (alarm1)
   {
-    Serial.println("Utkoblet");
+#ifdef alarmsetting	
+   Serial.println(" batt 1 Utkoblet");
+#endif
     digitalWrite(Rele1, HIGH);
-    alarm1 = true;
-    blinkLCD();
+	digitalWrite(Led1, HIGH);
+//  blinkLCD();
   }
   else
   {
-    Serial.println("Innkoblet");
-    digitalWrite(Rele1, LOW);
-    digitalWrite(Led1, LOW);
+#ifdef alarmsetting  
+	//  Serial.println("batt 1 Innkoblet"); 
+#endif
+// digitalWrite(Rele1, LOW);
+  //  digitalWrite(Led1, LOW);
   };
 
-
-  if ((Up2 < Min_spenning) || (Temp2 > Max_temp) || ( Strom2 > Max_strom) || alarm2)
+  if (alarm2)
   {
-    digitalWrite(Rele2, HIGH);
-    blinkLCD();
-    alarm2 = true;
+#ifdef alarmsetting	 
+	  Serial.println(" batt 2 Utkoblet"); 
+#endif
+	  digitalWrite(Rele2, HIGH);
+	  digitalWrite(Led2, HIGH);
+	  //blinkLCD();
   }
   else
   {
-    digitalWrite(Rele2, LOW);
-    digitalWrite(Led2, LOW);
+#ifdef alarmsetting	
+//	  Serial.println("batt 2 Innkoblet");
+#endif
+//	  digitalWrite(Rele2, LOW);
+ //   digitalWrite(Led2, LOW);
   };
 
-
-
-
+  
 }
 void blinkLCD()
 {
 
   tid = millis();
   prevrest = rest;
-  rest = tid % 100;
-  Serial.print("alarm: " + String(tid));
+/*  Serial.print("alarm: " + String(tid));
   Serial.print(" : ");
   Serial.print(rest);
   Serial.print(" : ");
   Serial.println(gg);
-  Serial.println("R1: \t" + String(digitalRead(R1)) + "\tled1: \t" + String(digitalRead(Led1)));
-  Serial.println("R2: \t" + String(digitalRead(R2)) + "\tLed2: \t" + String(digitalRead(Led2)));
-
+  Serial.println("R1: \t" + String(digitalRead(Rele1)) + "\tled1: \t" + String(digitalRead(Led1)));
+  Serial.println("R2: \t" + String(digitalRead(Rele2)) + "\tLed2: \t" + String(digitalRead(Led2)));
+  */
   //if ((rest < 20));// && (prevrest > 500))
   {
     gg = !gg;
@@ -736,6 +824,7 @@ void blinkLCD()
     }
   }
 }
+
 void les_touch() {}
 void Send_til_klient() {
 
@@ -748,7 +837,7 @@ void Send_til_klient() {
       //  Vo = 550;
     	  Serial.print("Vo:");
     	  Serial.println(Vo);
-    	  R2 = R1 * (1023.0 / (float)Vo - 1.0);
+    	  R2 = varR1 * (1023.0 / (float)Vo - 1.0);
     	  logR2 = log(R2);
     	  T = (1.0 / (c1 + c2 * logR2 + c3 * logR2*logR2*logR2));
     	  Temp1 = T - 273.15;
@@ -759,7 +848,7 @@ void Send_til_klient() {
     	  Vo = analogRead(A3) / 2.8;
     	  Serial.print("Vo:");
     	  Serial.println(Vo);
-    	  R2 = R1 * (1023.0 / (float)Vo - 1.0);
+    	  R2 = varR1 * (1023.0 / (float)Vo - 1.0);
     	  logR2 = log(R2);
     	  T = (1.0 / (c1 + c2 * logR2 + c3 * logR2*logR2*logR2));
     	  Temp2 = T - 273.15;
@@ -782,27 +871,13 @@ void Send_til_klient() {
     while (client.connected()) {            // loop while the client's connected
 	//	Serial.println("connected");
 	if (client.available()>3) 
-		{             // if there's bytes to read from the client,
-			Serial.println("available");
-			currentLine = client.readString();          //readStringUntil('\r');//      readString();
-			//        char c = client.read();             // read a byte, then
-			  //      Serial.write(c);                    // print it out the serial monitor
-			  //      if (c == '\n') 
-										// if the byte is a newline character
-
-
+		{      
+			currentLine = client.readStringUntil('\r');//      readString();
+			if (currentLine[0] == 10)
+				currentLine = currentLine.substring(1);
 			Serial.println("kommando: " + currentLine);
-		//	Serial.println(currentLine.substring(0, 5));
 
-
-			/*    client.print("Temp batt 2: \t");
-			  Serial.print("Temp batt 2: \t");
-			  client.print(Temp2);
-			  Serial.print(Temp2);
-			  client.println(" C");
-			  Serial.println(" C");
-			*/
-			if (currentLine == "fan on")
+		if (currentLine == "fan on")
 				ledcWrite(channel, 200);
 			else if (currentLine == "fan off")
 			{
@@ -830,36 +905,89 @@ void Send_til_klient() {
           EEPROM.commit();
           Serial.println("Leser EEPROM \t"+EEPROM.read(1));
         }  
-          else if (currentLine == "bat1 on")
-          {
-            /*	  if (alarm(1))
-              {
-              digitalWrite(Rele1, LOW);
-              digitalWrite(Led1, LOW);
-              bat1 = true;
-              client.println("R1\t0");
-              //Rel1_aktiv = true;
+		 else if (currentLine == "bat on")
+		 {
+			 /*	  if (alarm(1))
+			 {
+			 digitalWrite(Rele1, LOW);
+			 digitalWrite(Led1, LOW);
+			 bat1 = true;
+			 client.println("R1\t0");
+			 digitalWrite(Rele2, LOW);
+			 digitalWrite(Led2, LOW);
+			 bat2 = true;
+			 client.println("R2\t0");
+			 //Rel1_aktiv = true;
 
-              //	  blinkLCD(1);
-              }
-              else
-            */
-            {
-              digitalWrite(Led1, LOW);
-              digitalWrite(Rele1, LOW);
-              bat1 = true;
-            }
+			 //	  blinkLCD(1);
+			 }
+			 else
+			 */
+			 {
+				 digitalWrite(Led1, LOW);
+				 digitalWrite(Rele1, LOW);
+				 bat1 = true;
+				 digitalWrite(Led2, LOW);
+				 digitalWrite(Rele2, LOW);
+				 bat2 = true;
+			 }
 
-          }
-          else if (currentLine == "bat1 off")
+		 }
+		 else if (currentLine == "bat off")
+		 {
+			 /*	  if (alarm(1))
+			 {
+			 digitalWrite(Rele1, LOW);
+			 digitalWrite(Led1, LOW);
+			 bat1 = true;
+			 client.println("R2\t0");
+			 digitalWrite(Rele2, LOW);
+			 digitalWrite(Led2, LOW);
+			 bat2 = true;
+			 client.println("R1\t0");
+			 //Rel1_aktiv = true;
+
+			 //	  blinkLCD(1);
+			 }
+			 else
+			 */
+			 {
+				 digitalWrite(Led1, HIGH);
+				 digitalWrite(Rele1, HIGH);
+				 bat1 = true;
+				 digitalWrite(Led2, HIGH);
+				 digitalWrite(Rele2, HIGH);
+				 bat2 = true;
+			 }
+
+		 }
+		 else if (currentLine == "bat1 on")
+		 {
+			 /*	  if (alarm(1))
+			 {
+			 digitalWrite(Rele1, LOW);
+			 digitalWrite(Led1, LOW);
+			 bat1 = true;
+			 client.println("R1\t0");
+			 //Rel1_aktiv = true;
+
+			 //	  blinkLCD(1);
+			 }
+			 else
+			 */
+			 {
+				 digitalWrite(Led1, LOW);
+				 digitalWrite(Rele1, LOW);
+				 bat1 = true;
+			 }
+
+		 }
+		 else if (currentLine == "bat1 off")
           {
-            digitalWrite(Rele1, HIGH);
-            client.println("R1\t1");
-            digitalWrite(Led1, HIGH);
-            // Rel1_aktiv = false;
-            offs1 = analogRead(A6);
-            bat1 = false;
-            digitalWrite(Led1, HIGH);
+          digitalWrite(Rele1, HIGH);
+          digitalWrite(Led1, HIGH);
+          Serial.println("BAT OFF");
+           bat1 = false;
           }
           else if (currentLine == "bat2 on")
           {
@@ -883,12 +1011,8 @@ void Send_til_klient() {
           }
           else if (currentLine == "bat2 off")
           {
-            digitalWrite(Rele2, HIGH);
-            digitalWrite(Led2, HIGH);
-            offs2 = analogRead(A7);
-            client.println("R2\t1");
-            //Rel2_aktiv = false;
-            bat2 = false;
+		  digitalWrite(Rele2, HIGH);
+          digitalWrite(Led2, HIGH);
           }
           else if (currentLine == "resett_alarm")
           {
@@ -898,29 +1022,35 @@ void Send_til_klient() {
             if (!sjekk_verdier(true))
             {
               Serial.println("!sjekk_verdier");
-              if (alarm1_ok)
-              {
-                Serial.println("alarm1_ok");
-                digitalWrite(Led1, HIGH);
-                digitalWrite(Rele1, HIGH);
-                bat1 = true;
-                alarm1_ok = false;
-                ld1 = false;
-              }
+			  if (alarm1_ok)
+			  {
+				  Serial.println("alarm1_ok");
+				  digitalWrite(Led1, LOW);
+				  digitalWrite(Rele1, LOW);
+				  bat1 = true;
+				  alarm1_ok = false;
+				  ld1 = false;
+			  }
+			  else
+				  Serial.println("ALARM BATT 1" ) ;
               if (alarm2_ok)
               {
-                digitalWrite(Led2, HIGH);
-                digitalWrite(Rele2, HIGH);
+                digitalWrite(Led2, LOW);
+                digitalWrite(Rele2, LOW);
                 bat2 = true;
                 alarm2_ok = false;
                 ld2 = false;
               }
-            }
+			  else
+				  Serial.println("ALARM BATT 1" ) ;
+			}
 
-          };
+          }
+		  else if (currentLine == "logout")
+			  break;
 
 
-
+/*
 
           // if the current line is blank, you got two newline characters in a row.
           // that's the end of the client HTTP request, so send a response:
@@ -935,7 +1065,7 @@ void Send_til_klient() {
             Serial.print("rest currentline: " + currentLine);
             currentLine = "";
           }
-
+*/
           currentLine = "";
 
         }
@@ -973,13 +1103,22 @@ void Send_til_klient() {
       client.println(digitalRead(gass_alarm));
       client.print("Gass\t");
       client.println(gass);     
-  //    Serial.println("Data sendt til klient");
-  //    client.stop();
-   //   Serial.println("Client Disconnected.");
+     client.println("Slutt");
+ //   Serial.println("Data sendt til klient");
+	 if (currentLine == "stop")
+         client.stop();
+// client.stop();
+
+	//  client.flush();
+
     }
-    // close the connection:
+//	Serial.println("Client Disconnected."+String(i++));
 
   }
+/* else
+	 Serial.println("Client out.");
+	 delay(1000);
+	 */
 }
 void Send_til_klient1() {
   WiFiClient client = server.available();   // listen for incoming clients
@@ -1041,8 +1180,9 @@ void Send_til_klient1() {
     }
     client.stop();
     Serial.println("Client Disconnected.");
-
   }
+
+
 }
 void Les_ladespenning()
 {
@@ -1053,28 +1193,39 @@ void Les_ladespenning()
 }
 void Les_minipro()
 {
+	Serial2.println("Request");
 	if (Serial2.available() > 0)
 	{
 		String str1 = Serial2.readString();
-//Serial.println(str1);
+Serial.println("fra mini pro: "+str1);
 		int i = str1.indexOf('\t');
 		String str2 = str1.substring(0, i);
 		KabTemp = str2.toFloat();
 		str1 = str1.substring(i + 1);
-Serial.println(String("kabtemp fra minipro: " + String(KabTemp)));
+Serial.println(String("Kabtemp: \t" + String(KabTemp)));
 		i = str1.indexOf('\t');
 		str2 = str1.substring(0, i);
 		 LadeSpenning = str2.toFloat();
     LadeSpenning=LadeSpenning*12/10;
-Serial.println(String("s_ladespenning fra minipro: " + String(LadeSpenning)));
+Serial.println(String("Ladesp: \t" + String(LadeSpenning)));
 		str1 = str1.substring(i + 1);
 		i = str1.indexOf('\t');
 		str2 = str1.substring(0, i);
 		 gass = str2.toFloat();
-Serial.println(String("s_gass fra minipro: " + String(gass)));
+Serial.println(String("Gass \t" + String(gass)));
+	i = str1.indexOf('\t');
+	str2 = str1.substring(0, i);
+	UB1 = str2.toFloat();
+	UB1 = UB1 * 12 / 10;
+Serial.println(String("UB1: \t" + String(UB1)));
+	i = str1.indexOf('\t');
+	str2 = str1.substring(0, i);
+	UB2 = str2.toFloat();
+	UB2 = UB2 * 12 / 10;
+	Serial.println(String("UB2: \t" + String(UB2)));
    Les_ladespenning();
   Les_kabinetttemp();
-  Serial.println(String("kabtemp etter  Les_kabinetttemp: " + String(KabTemp)));
+  Serial.println(String("Kabtemp2:\t" + String(KabTemp)));
   Les_gass();
 	}
 
