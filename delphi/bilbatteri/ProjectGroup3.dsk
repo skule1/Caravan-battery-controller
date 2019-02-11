@@ -1,40 +1,45 @@
 ﻿[Closed Files]
-File_0=TSourceModule,'c:\program files (x86)\embarcadero\studio\16.0\source\Indy10\System\IdException.pas',0,1,90,1,112,0,0,,
-File_1=TSourceModule,'c:\program files (x86)\embarcadero\studio\16.0\SOURCE\VCL\Vcl.Controls.pas',0,1,7471,1,7493,0,0,,
-File_2=TSourceModule,'c:\program files (x86)\embarcadero\studio\16.0\SOURCE\VCL\Vcl.ExtCtrls.pas',0,1,3035,1,3057,0,0,,
-File_3=TSourceModule,'c:\program files (x86)\embarcadero\studio\16.0\source\rtl\common\System.Classes.pas',0,1,16861,1,16883,0,0,,
-File_4=TSourceModule,'c:\program files (x86)\embarcadero\studio\16.0\source\Indy10\Core\IdIOHandler.pas',0,1,1382,60,1393,0,0,,
-File_5=TSourceModule,'c:\program files (x86)\embarcadero\studio\16.0\SOURCE\RTL\SYS\System.pas',0,1,19650,1,19672,0,0,,
-File_6=TSourceModule,'N:\prosjekter\destroyer\delphi\Unit4.pas',0,1,1,31,400,0,0,,
-File_7=TSourceModule,'N:\prosjekter\destroyer\delphi\Unit2.pas',0,1,1,1,1,0,0,,
-File_8=TSourceModule,'c:\program files (x86)\embarcadero\studio\16.0\SOURCE\RTL\SYS\System.SysUtils.pas',0,1,5497,1,5519,0,0,,
-File_9=TSourceModule,'C:\Users\Skule\Documents\Embarcadero\Studio\Projects\multithreads message\Unit2.pas',0,1,4,65,109,0,0,,
-File_10=TSourceModule,'C:\Users\Skule\Documents\Embarcadero\Studio\Projects\multithreads – Kopi\Unit2.pas',0,1,34,5,76,0,0,,
-File_11=TSourceModule,'N:\Embarcadero\proj1\tcp6\Unit3.pas',0,1,363,6,387,0,0,,
-File_12=TSourceModule,'C:\Users\Skule\Documents\Embarcadero\Studio\Projects\tcp3\Unit2.pas',0,1,53,4,56,0,0,,
-File_13=TSourceModule,'N:\Embarcadero\Projects\destroyer\Unit17.pas',0,1,286,5,332,0,0,,
+File_0=TSourceModule,'c:\program files (x86)\embarcadero\studio\16.0\SOURCE\VCL\Vcl.Controls.pas',0,1,7471,1,7493,0,0,,
+File_1=TSourceModule,'c:\program files (x86)\embarcadero\studio\16.0\SOURCE\VCL\Vcl.ExtCtrls.pas',0,1,3035,1,3057,0,0,,
+File_2=TSourceModule,'c:\program files (x86)\embarcadero\studio\16.0\source\rtl\common\System.Classes.pas',0,1,16861,1,16883,0,0,,
+File_3=TSourceModule,'c:\program files (x86)\embarcadero\studio\16.0\source\Indy10\Core\IdIOHandler.pas',0,1,1382,60,1393,0,0,,
+File_4=TSourceModule,'c:\program files (x86)\embarcadero\studio\16.0\SOURCE\RTL\SYS\System.pas',0,1,19650,1,19672,0,0,,
+File_5=TSourceModule,'N:\prosjekter\destroyer\delphi\Unit4.pas',0,1,1,31,400,0,0,,
+File_6=TSourceModule,'N:\prosjekter\destroyer\delphi\Unit2.pas',0,1,1,1,1,0,0,,
+File_7=TSourceModule,'c:\program files (x86)\embarcadero\studio\16.0\SOURCE\RTL\SYS\System.SysUtils.pas',0,1,5497,1,5519,0,0,,
+File_8=TSourceModule,'C:\Users\Skule\Documents\Embarcadero\Studio\Projects\multithreads message\Unit2.pas',0,1,4,65,109,0,0,,
+File_9=TSourceModule,'C:\Users\Skule\Documents\Embarcadero\Studio\Projects\multithreads – Kopi\Unit2.pas',0,1,34,5,76,0,0,,
+File_10=TSourceModule,'N:\Embarcadero\proj1\tcp6\Unit3.pas',0,1,363,6,387,0,0,,
+File_11=TSourceModule,'C:\Users\Skule\Documents\Embarcadero\Studio\Projects\tcp3\Unit2.pas',0,1,53,4,56,0,0,,
+File_12=TSourceModule,'N:\Embarcadero\Projects\destroyer\Unit17.pas',0,1,286,5,332,0,0,,
 
 [Modules]
-Module0=N:\prosjekter\bilbatteri\delphi\bilbatteri\Unit3.pas
-Module1=N:\prosjekter\bilbatteri\delphi\bilbatteri\bilbatteri.dproj
-Module2=c:\program files (x86)\embarcadero\studio\16.0\source\Indy10\System\IdStack.pas
-Module3=E:\Dokumenter\Embarcadero\Studio\Projects\threadtest\Unit12.pas
-Module4=documentation.htm
-Count=5
+Module0=c:\program files (x86)\embarcadero\studio\16.0\source\Indy10\System\IdException.pas
+Module1=c:\program files (x86)\embarcadero\studio\16.0\source\Indy10\System\IdStack.pas
+Module2=N:\prosjekter\bilbatteri\delphi\bilbatteri\Unit3.pas
+Module3=N:\prosjekter\bilbatteri\delphi\bilbatteri\bilbatteri.dproj
+Module4=E:\Dokumenter\Embarcadero\Studio\Projects\threadtest\Unit12.pas
+Module5=documentation.htm
+Count=6
 EditWindowCount=1
 
-[N:\prosjekter\bilbatteri\delphi\bilbatteri\Unit3.pas]
+[c:\program files (x86)\embarcadero\studio\16.0\source\Indy10\System\IdException.pas]
 ModuleType=TSourceModule
-FormState=1
-FormOnTop=1
-
-[N:\prosjekter\bilbatteri\delphi\bilbatteri\bilbatteri.dproj]
-ModuleType=TBaseProject
+FormState=0
+FormOnTop=0
 
 [c:\program files (x86)\embarcadero\studio\16.0\source\Indy10\System\IdStack.pas]
 ModuleType=TSourceModule
 FormState=0
 FormOnTop=0
+
+[N:\prosjekter\bilbatteri\delphi\bilbatteri\Unit3.pas]
+ModuleType=TSourceModule
+FormState=1
+FormOnTop=0
+
+[N:\prosjekter\bilbatteri\delphi\bilbatteri\bilbatteri.dproj]
+ModuleType=TBaseProject
 
 [E:\Dokumenter\Embarcadero\Studio\Projects\threadtest\Unit12.pas]
 ModuleType=TSourceModule
@@ -45,13 +50,14 @@ FormOnTop=0
 ModuleType=TURLModule
 
 [EditWindow0]
-ViewCount=5
-CurrentEditView=N:\prosjekter\bilbatteri\delphi\bilbatteri\Unit3.pas
+ViewCount=6
+CurrentEditView=c:\program files (x86)\embarcadero\studio\16.0\source\Indy10\System\IdException.pas
 View0=0
 View1=1
 View2=2
 View3=3
 View4=4
+View5=5
 PercentageSizes=1
 Create=1
 Visible=1
@@ -89,12 +95,12 @@ WelcomePageURL=bds:/documentation.htm
 CustomEditViewType=TEditView
 Module=N:\prosjekter\bilbatteri\delphi\bilbatteri\Unit3.pas
 CursorX=1
-CursorY=661
-TopLine=658
+CursorY=677
+TopLine=671
 LeftCol=1
 Elisions=
 Bookmarks=
-EditViewName=Borland.FormDesignerView
+EditViewName=N:\prosjekter\bilbatteri\delphi\bilbatteri\Unit3.pas
 
 [View2]
 CustomEditViewType=TEditView
@@ -111,14 +117,25 @@ EditViewName=N:\prosjekter\bilbatteri\delphi\bilbatteri\bilbatteri.dpr
 CustomEditViewType=TEditView
 Module=c:\program files (x86)\embarcadero\studio\16.0\source\Indy10\System\IdStack.pas
 CursorX=1
-CursorY=857
-TopLine=835
+CursorY=894
+TopLine=872
 LeftCol=1
 Elisions=
 Bookmarks=
 EditViewName=c:\program files (x86)\embarcadero\studio\16.0\source\Indy10\System\IdStack.pas
 
 [View4]
+CustomEditViewType=TEditView
+Module=c:\program files (x86)\embarcadero\studio\16.0\source\Indy10\System\IdException.pas
+CursorX=61
+CursorY=102
+TopLine=90
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=c:\program files (x86)\embarcadero\studio\16.0\source\Indy10\System\IdException.pas
+
+[View5]
 CustomEditViewType=TEditView
 Module=E:\Dokumenter\Embarcadero\Studio\Projects\threadtest\Unit12.pas
 CursorX=1
@@ -168,7 +185,7 @@ Dockable=1
 StayOnTop=0
 
 [Breakpoints]
-Count=9
+Count=10
 Breakpoint0='N:\prosjekter\destroyer\delphi\Unit4.pas',14,'',0,1,'',1,0,0,'',1,'','','',0,''
 Breakpoint1='E:\Dokumenter\Embarcadero\Studio\Projects\threadtest\Unit12.pas',121,'',0,1,'',1,0,0,'',1,'','','',0,''
 Breakpoint2='E:\Dokumenter\Embarcadero\Studio\Projects\threadtest\Unit12.pas',94,'',0,1,'',1,0,0,'',1,'','','',0,''
@@ -178,6 +195,7 @@ Breakpoint5='N:\prosjekter\bilbatteri\delphi\bilbatteri\Unit3.pas',397,'',0,1,''
 Breakpoint6='N:\prosjekter\bilbatteri\delphi\bilbatteri\Unit3.pas',951,'',0,1,'',1,0,0,'',1,'','','',0,''
 Breakpoint7='N:\prosjekter\bilbatteri\delphi\bilbatteri\Unit3.pas',798,'',0,1,'',1,0,0,'',1,'','','',0,''
 Breakpoint8='N:\prosjekter\bilbatteri\delphi\bilbatteri\Unit3.pas',1039,'',0,1,'',1,0,0,'',1,'','','',0,''
+Breakpoint9='N:\prosjekter\bilbatteri\delphi\bilbatteri\Unit3.pas',661,'',0,1,'',1,0,0,'',1,'','','',0,''
 
 [EmbarcaderoWin32Debugger_AddressBreakpoints]
 Count=0
@@ -288,7 +306,7 @@ MaxLeft=-1
 MaxTop=-1
 ClientWidth=1896
 ClientHeight=5319
-TBDockHeight=9086
+TBDockHeight=7078
 LRDockWidth=1896
 Dockable=1
 StayOnTop=0
@@ -296,8 +314,8 @@ SplitPos=111
 
 [PropInspDesignerSelection]
 ArrangeBy=Name
-SelectedItem=Action,
-ExpandedItems=Anchors=0,BorderIcons=0,Constraints=0
+SelectedItem=Name,
+ExpandedItems="LiveBindings Designer=0"
 
 [ModelViewTool]
 PercentageSizes=1
@@ -308,11 +326,11 @@ State=0
 Left=0
 Top=0
 Width=2000
-Height=8853
+Height=6845
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2000
-ClientHeight=8853
+ClientHeight=6845
 TBDockHeight=4879
 LRDockWidth=5307
 Dockable=1
@@ -325,7 +343,7 @@ Visible=0
 Docked=1
 State=0
 Left=-182
-Top=-106
+Top=-102
 Width=1849
 Height=3138
 MaxLeft=-1
@@ -384,11 +402,11 @@ State=0
 Left=0
 Top=0
 Width=2000
-Height=8853
+Height=6845
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2000
-ClientHeight=8853
+ClientHeight=6845
 TBDockHeight=5957
 LRDockWidth=2510
 Dockable=1
@@ -400,8 +418,8 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=-1536
-Top=-106
+Left=-1419
+Top=-4
 Width=2844
 Height=6207
 MaxLeft=-1
@@ -420,7 +438,7 @@ Visible=0
 Docked=1
 State=0
 Left=-1728
-Top=-106
+Top=310
 Width=276
 Height=362
 MaxLeft=-1
@@ -524,11 +542,11 @@ State=0
 Left=0
 Top=0
 Width=2339
-Height=1241
+Height=1009
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2339
-ClientHeight=1241
+ClientHeight=1009
 TBDockHeight=2319
 LRDockWidth=2823
 Dockable=1
@@ -589,11 +607,11 @@ State=0
 Left=0
 Top=0
 Width=2000
-Height=8853
+Height=6845
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2000
-ClientHeight=8853
+ClientHeight=6845
 TBDockHeight=4879
 LRDockWidth=7151
 Dockable=1
@@ -605,8 +623,8 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=0
-Top=0
+Left=370
+Top=923
 Width=2854
 Height=3207
 MaxLeft=-1
@@ -737,7 +755,7 @@ Visible=0
 Docked=1
 State=0
 Left=0
-Top=0
+Top=23
 Width=3823
 Height=1422
 MaxLeft=-1
@@ -768,7 +786,7 @@ MaxLeft=-1
 MaxTop=-1
 ClientWidth=2000
 ClientHeight=4612
-TBDockHeight=9086
+TBDockHeight=7078
 LRDockWidth=2000
 Dockable=1
 StayOnTop=0
@@ -792,7 +810,7 @@ MaxLeft=-1
 MaxTop=-1
 ClientWidth=1896
 ClientHeight=3569
-TBDockHeight=9086
+TBDockHeight=7078
 LRDockWidth=1896
 Dockable=1
 StayOnTop=0
@@ -816,7 +834,7 @@ MaxLeft=-1
 MaxTop=-1
 ClientWidth=2000
 ClientHeight=4276
-TBDockHeight=9086
+TBDockHeight=7078
 LRDockWidth=2000
 Dockable=1
 StayOnTop=0

@@ -685,8 +685,6 @@ object Form3: TForm3
         Color = clBackground
         ParentBackground = False
         TabOrder = 0
-        ExplicitLeft = -3
-        ExplicitTop = 3
         object VrAngularMeter9: TVrAngularMeter
           Left = 667
           Top = 63
@@ -1714,7 +1712,7 @@ object Form3: TForm3
   object Timer1: TTimer
     Enabled = False
     OnTimer = Timer1Timer
-    Left = 864
+    Left = 872
     Top = 360
   end
 end

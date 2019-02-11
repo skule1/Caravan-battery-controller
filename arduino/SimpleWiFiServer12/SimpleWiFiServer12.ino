@@ -46,8 +46,8 @@ int freq = 10000;
 int channel = 0;
 int resolution = 8;
 
-#define alarmsetting false
-#define visparametre false
+//#define alarmsetting false
+//#define visparametre false
 
 #define batteri1  6
 #define batteri2  7
@@ -445,7 +445,7 @@ void loop()
   Les_spenning1();
   Les_spenning2();
   
-//  Les_minipro();
+ Les_minipro();
  //  Les_ladespenning();  // leses av minipro()
 //  Les_kabinetttemp();
 //  Les_gass();
@@ -723,12 +723,19 @@ void Vis_parametre() {
 boolean alarm() {
   //  float Max_temp = 60, Max_strom = 50, Min_spenning = 11, grense_gass = 10;
  // exit;
-
-	Serial.println("variabel \t" + String(Min_spenning) + '\t' + String(Max_temp) + '\t' + String(Max_strom));
-	Serial.println("variabel \t" + String(Up1*EEPROM.read(E_U1) / 128) + '\t' + String(Temp1*EEPROM.read(E_T1) / 128) + '\t' + String(Strom1*EEPROM.read(E_I1) / 128));
-	if (!alarm1) 	alarm1 = (Up1*EEPROM.read(E_U1) / 128 < Min_spenning) || (Temp1*EEPROM.read(E_T1) / 128 > Max_temp) || (Strom1*EEPROM.read(E_I1) / 128 > Max_strom);
-	if (!alarm2) alarm2 = (Up2*EEPROM.read(E_U2) / 128 < Min_spenning) || (Temp1*EEPROM.read(E_T2) / 128 > Max_temp) || (Strom1*EEPROM.read(E_I2) / 128 > Max_strom);
 #ifdef alarmsetting
+//	Serial.println("variabel \t" + String(Min_spenning) + '\t' + String(Max_temp) + '\t' + String(Max_strom));
+//	Serial.println("variabel \t" + String(Up1*EEPROM.read(E_U1) / 128) + '\t' + String(Temp1*EEPROM.read(E_T1) / 128) + '\t' + String(Strom1*EEPROM.read(E_I1) / 128));
+#endif
+
+	//if (!alarm1)
+	alarm1_ok = (Up1*EEPROM.read(E_U1) / 128 < Min_spenning) || (Temp1*EEPROM.read(E_T1) / 128 > Max_temp) || (Strom1*EEPROM.read(E_I1) / 128 > Max_strom);
+	if (!alarm1) alarm1 = alarm1_ok;
+	//if (!alarm2) 
+		alarm2_ok = (Up2*EEPROM.read(E_U2) / 128 < Min_spenning) || (Temp1*EEPROM.read(E_T2) / 128 > Max_temp) || (Strom1*EEPROM.read(E_I2) / 128 > Max_strom);
+		if (!alarm2) alarm2 = alarm2_ok;
+
+//#ifdef alarmsetting
   Serial.print("Alarm  1\t");
   Serial.print(Up1*EEPROM.read(E_U1)/ 128 < Min_spenning);
   Serial.print("  \t ");
@@ -736,8 +743,9 @@ boolean alarm() {
   Serial.print("  \t ");
   Serial.print(Strom1*EEPROM.read(E_I1) / 128  > Max_strom);
   Serial.print("  \t ");
-  Serial.println(alarm1);
- 
+  Serial.print(alarm1);
+  Serial.print("  \t ");
+  Serial.println(alarm1_ok);
 
   Serial.print("!alarm  2\t");
   Serial.print(Up2*EEPROM.read(E_U2)/ 128 < Min_spenning);
@@ -746,8 +754,10 @@ boolean alarm() {
   Serial.print("  \t ");
   Serial.print(Strom2*EEPROM.read(E_I2) / 128  > Max_strom);
   Serial.print("  \t ");
-  Serial.println(alarm2);
-#endif 
+  Serial.print(alarm2);
+  Serial.print("  \t ");
+  Serial.println(alarm2_ok);
+//#endif 
 
 	if (alarm1)
   {
@@ -907,59 +917,21 @@ void Send_til_klient() {
         }  
 		 else if (currentLine == "bat on")
 		 {
-			 /*	  if (alarm(1))
-			 {
-			 digitalWrite(Rele1, LOW);
-			 digitalWrite(Led1, LOW);
-			 bat1 = true;
-			 client.println("R1\t0");
-			 digitalWrite(Rele2, LOW);
-			 digitalWrite(Led2, LOW);
-			 bat2 = true;
-			 client.println("R2\t0");
-			 //Rel1_aktiv = true;
-
-			 //	  blinkLCD(1);
-			 }
-			 else
-			 */
-			 {
 				 digitalWrite(Led1, LOW);
 				 digitalWrite(Rele1, LOW);
 				 bat1 = true;
 				 digitalWrite(Led2, LOW);
 				 digitalWrite(Rele2, LOW);
 				 bat2 = true;
-			 }
-
 		 }
 		 else if (currentLine == "bat off")
 		 {
-			 /*	  if (alarm(1))
-			 {
-			 digitalWrite(Rele1, LOW);
-			 digitalWrite(Led1, LOW);
-			 bat1 = true;
-			 client.println("R2\t0");
-			 digitalWrite(Rele2, LOW);
-			 digitalWrite(Led2, LOW);
-			 bat2 = true;
-			 client.println("R1\t0");
-			 //Rel1_aktiv = true;
-
-			 //	  blinkLCD(1);
-			 }
-			 else
-			 */
-			 {
 				 digitalWrite(Led1, HIGH);
 				 digitalWrite(Rele1, HIGH);
 				 bat1 = true;
 				 digitalWrite(Led2, HIGH);
 				 digitalWrite(Rele2, HIGH);
 				 bat2 = true;
-			 }
-
 		 }
 		 else if (currentLine == "bat1 on")
 		 {
@@ -1019,26 +991,27 @@ void Send_til_klient() {
             Serial.println("Lest resett alarm");
             //		  alarm1 = false;
             //		  alarm2 = false;
-            if (!sjekk_verdier(true))
+       //     if (!sjekk_verdier(true))
             {
               Serial.println("!sjekk_verdier");
-			  if (alarm1_ok)
+			  if (!alarm1_ok)
 			  {
 				  Serial.println("alarm1_ok");
 				  digitalWrite(Led1, LOW);
 				  digitalWrite(Rele1, LOW);
 				  bat1 = true;
-				  alarm1_ok = false;
+				  alarm1= false;
 				  ld1 = false;
 			  }
 			  else
 				  Serial.println("ALARM BATT 1" ) ;
-              if (alarm2_ok)
+
+              if (!alarm2_ok)
               {
                 digitalWrite(Led2, LOW);
                 digitalWrite(Rele2, LOW);
                 bat2 = true;
-                alarm2_ok = false;
+                alarm2 = false;
                 ld2 = false;
               }
 			  else
@@ -1193,7 +1166,7 @@ void Les_ladespenning()
 }
 void Les_minipro()
 {
-	Serial2.println("Request");
+	Serial2.println("les");
 	if (Serial2.available() > 0)
 	{
 		String str1 = Serial2.readString();
