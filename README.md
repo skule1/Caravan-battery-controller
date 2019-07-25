@@ -10,7 +10,7 @@ The controller is supporting a WiFi connection to a predefined WiFi SSID router.
 A battery powered watch panek with a 20 character 4 line LED alpnumeric display show alert contiions. In addition the panel also is able to read the parametres form the controller and can reset a battery failure conition.
 ## MQTT communication
 The controller also has a MQTT communication ability to a watch panel configured by Node-Red.
-##Nextion displayed montior
+##Nextion displayed montior. A connection is the established from the controller to a MQTT server which can connumicate over the Internet of Things network.
 A monitor using Nection display is also made, to have a second montor available at another location.
 ## Pascal montor admin unit
 A WiFi pascal  programmed unit i able to configure, calibrate and exteded montior the controller
